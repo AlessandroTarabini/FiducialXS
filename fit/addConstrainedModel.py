@@ -47,15 +47,15 @@ observableBins.pop()
 observableBins.pop(0)
 
 # _temp = __import__('inputs_sig_'+obsName, globals(), locals(), ['acc','dacc','eff','deff','inc_outfrac','binfrac_outfrac','outinratio','doutinratio','inc_wrongfrac','binfrac_wrongfrac','cfactor','lambdajesup','lambdajesdn'], -1)
-_temp = __import__('inputs_sig_'+obsName+'_'+opt.YEAR, globals(), locals(), ['acc','eff','err_eff','outinratio','err_outinratio','inc_wrongfrac','binfrac_wrongfrac','number_fake'], -1)
+_temp = __import__('inputs_sig_'+obsName+'_'+opt.YEAR, globals(), locals(), ['acc','eff','deff','outinratio','doutinratio','inc_wrongfrac','binfrac_wrongfrac'], -1)
 acc = _temp.acc
 eff = _temp.eff
-err_eff = _temp.err_eff
+err_eff = _temp.deff
 outinratio = _temp.outinratio
-err_outinratio = _temp.err_outinratio
+err_outinratio = _temp.doutinratio
 inc_wrongfrac = _temp.inc_wrongfrac
 binfrac_wrongfrac = _temp.binfrac_wrongfrac
-number_fake = _temp.number_fake
+# number_fake = _temp.number_fake
 
 _temp = __import__('higgs_xsbr_13TeV', globals(), locals(), ['higgs4l_br','higgs_xs'], -1)
 higgs4l_br = _temp.higgs4l_br
@@ -116,21 +116,21 @@ for fState in fStates:
             effsm += ZHxs/(ggHxs+VBFxs+WHxs+ZHxs+ttHxs)*max(eff['ZH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)],0.0)
             effsm += ttHxs/(ggHxs+VBFxs+WHxs+ZHxs+ttHxs)*max(eff['ttH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)],0.0)
 
-            err_effsm = sqrt(err_eff['ggH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_eff['VBFH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_eff['WH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_eff['ZH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_eff['ttH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2)
+            # err_effsm = sqrt(err_eff['ggH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_eff['VBFH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_eff['WH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_eff['ZH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_eff['ttH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2)
 
-            err_outinratiosm = sqrt(err_outinratio['ggH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_outinratio['VBFH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_outinratio['WH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_outinratio['ZH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
-                        err_outinratio['ttH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2)
+            # err_outinratiosm = sqrt(err_outinratio['ggH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_outinratio['VBFH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_outinratio['WH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_outinratio['ZH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2 +
+            #             err_outinratio['ttH125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)]**2)
 
 
-            err_eff['SM_125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)] = err_effsm
-            err_outinratio['SM_125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)] = err_outinratiosm
+            # err_eff['SM_125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)] = err_effsm
+            # err_outinratio['SM_125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)] = err_outinratiosm
             eff['SM_125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)] = effsm
             outinratio['SM_125_'+fState+'_'+obsName+'_genbin'+str(genbin)+'_recobin'+str(recobin)] = outin_SM
 
@@ -283,4 +283,4 @@ with open('../inputs/inputs_sig_'+opt.OBSNAME+'_'+opt.YEAR+'.py', 'w') as f:
     f.write('err_outinratio = '+str(err_outinratio)+' \n')
     f.write('inc_wrongfrac = '+str(inc_wrongfrac)+' \n')
     f.write('binfrac_wrongfrac = '+str(binfrac_wrongfrac)+' \n')
-    f.write('number_fake = '+str(number_fake))
+    # f.write('number_fake = '+str(number_fake))
