@@ -170,6 +170,8 @@ def runFiducialXS():
             print cmd, '\n'
             processCmd(cmd,1)
             cmd = 'echo "nuis group = CMS_eff_e CMS_eff_m CMS_hzz2e2mu_Zjets_'+str(opt.YEAR)+' CMS_hzz4e_Zjets_'+str(opt.YEAR)+' CMS_hzz4mu_Zjets_'+str(opt.YEAR)+' QCDscale_VV QCDscale_ggVV kfactor_ggzz lumi_13TeV_'+str(opt.YEAR)+' norm_fakeH pdf_gg pdf_qqbar CMS_zz4l_sigma_e_sig_'+str(opt.YEAR)+' CMS_zz4l_sigma_m_sig_'+str(opt.YEAR)+' CMS_zz4l_n_sig_3_'+str(opt.YEAR)+' CMS_zz4l_mean_e_sig_'+str(opt.YEAR)+' CMS_zz4l_mean_m_sig_'+str(opt.YEAR)+' CMS_zz4l_sigma_e_sig_'+str(opt.YEAR)+'" >> hzz4l_all_13TeV_xs_'+obsName+'_bin_'+PhysicalModel+'.txt'
+            # Quando faccio girare le datacard di Tahir
+            # cmd = 'echo "nuis group = CMS_eff_e CMS_eff_m CMS_hzz2e2mu_Zjets_'+str(opt.YEAR)+' CMS_hzz4e_Zjets_'+str(opt.YEAR)+' CMS_hzz4mu_Zjets_'+str(opt.YEAR)+' QCDscale_VV QCDscale_ggVV kfactor_ggzz lumi_13TeV_'+str(opt.YEAR)+' norm_fakeH pdf_gg pdf_qqbar CMS_zz4l_sigma_e_sig_'+str(opt.YEAR)+' CMS_zz4l_sigma_m_sig_'+str(opt.YEAR)+' CMS_zz4l_n_sig_3_8 CMS_zz4l_mean_e_sig_'+str(opt.YEAR)+' CMS_zz4l_mean_m_sig_'+str(opt.YEAR)+' CMS_zz4l_sigma_e_sig_'+str(opt.YEAR)+'" >> hzz4l_all_13TeV_xs_'+obsName+'_bin_'+PhysicalModel+'.txt'
             processCmd(cmd,1)
             print cmd, '\n'
 
@@ -203,6 +205,7 @@ def runFiducialXS():
             if(not opt.UNBLIND): cmd = cmd + ' -t -1 --saveToys'
             print cmd+'\n'
             output = processCmd(cmd)
+
 
     # # Impact plot
     # if(runAllSteps or opt.impactsOnly):

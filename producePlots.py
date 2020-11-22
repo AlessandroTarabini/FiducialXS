@@ -60,7 +60,7 @@ sys.path.append('/afs/cern.ch/user/a/atarabin/CMSSW_10_2_13/src/HiggsAnalysis/Fi
 
 def plotXS(obsName, obs_bins):
 
-    _temp = __import__('inputs_sig_'+obsName+'_2017', globals(), locals(), ['acc'], -1)
+    _temp = __import__('inputs_sig_'+obsName+'_'+opt.YEAR, globals(), locals(), ['acc'], -1)
     acc = _temp.acc
     # eff = _temp.eff
     # outinratio = _temp.outinratio
@@ -1287,7 +1287,7 @@ def plotXS(obsName, obs_bins):
     legend . AddEntry(g_ggH_powheg , "gg#rightarrowH (POWHEG) + XH", "lf")
     #legend . AddEntry(g_XH , "XH = VBF + VH + ttH", "l")
     legend . AddEntry(h_XH , "XH = VBF + VH + ttH (POWHEG)", "f")
-    legend . AddEntry(dummy, "(LHC HXSWG YR4, m_{H}=125 GeV)", "")
+    legend . AddEntry(dummy, "(LHC HXSWG YR4, m_{H}="+opt.THEORYMASS+" GeV)", "")
 
     legend.SetShadowColor(0);
     legend.SetFillColor(0);
